@@ -1,0 +1,34 @@
+---
+- name: Update packages and install dependencies
+  hosts: nodes
+  become: true
+  tasks:
+    - name: Update system packages
+      dnf:
+        name: '*'
+        state: latest
+      become: true
+
+    - name: Install git package
+      dnf:
+        name: git
+        state: present
+
+    - name: Upgrade pip
+      pip:
+        name: pip
+        state: latest
+        executable: pip3
+        user: yes
+
+    - name: Install podman-compose
+      pip:
+        name: podman-compose
+        state: present
+        executable: pip3
+        user: yes
+
+    - name: Clone Conjur Quickstart repository
+      git:
+        repo: https://github.com/gclim/conjur-quickstart.git
+        dest: .
