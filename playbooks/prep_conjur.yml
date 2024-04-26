@@ -25,6 +25,12 @@
         state: present
         executable: pip3
         extra_args: --user
+      register: podman_compose_install_result
+
+    - name: Check if podman-compose was successfully installed
+      debug:
+        msg: "podman-compose is successfully installed"
+      when: not podman_compose_install_result.failed
 
     - name: Kill firewall
       service:
