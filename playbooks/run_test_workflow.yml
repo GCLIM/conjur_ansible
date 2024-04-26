@@ -1,5 +1,5 @@
 ---
-- name: Update packages and install dependencies
+- name: Run Conjur Test Work Flow
   hosts: nodes
 
   tasks:
