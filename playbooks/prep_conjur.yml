@@ -19,14 +19,12 @@
         name: pip
         state: latest
         executable: pip3
-        user: yes
 
     - name: Install podman-compose
       pip:
         name: podman-compose
         state: present
         executable: pip3
-        user: yes
 
 - name: Clone Repo
   hosts: nodes
