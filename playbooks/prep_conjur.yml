@@ -32,7 +32,6 @@
         enabled: no
         state: stopped
 
-
 - name: Clone Repo
   hosts: nodes
   become: false
