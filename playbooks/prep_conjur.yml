@@ -32,6 +32,6 @@
     - name: Clone Conjur Quickstart repository
       git:
         repo: https://github.com/gclim/conjur-quickstart.git
-        dest: .
+        dest: ./conjur
         clone: yes
         update: yes
