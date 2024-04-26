@@ -33,3 +33,5 @@
       git:
         repo: https://github.com/gclim/conjur-quickstart.git
         dest: .
+        clone: yes
+        update: yes
