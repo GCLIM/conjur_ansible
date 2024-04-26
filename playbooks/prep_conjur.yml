@@ -27,7 +27,7 @@
         name: podman-compose
         state: present
         executable: pip3
-        extra_args: --user
+        extra_args: --user --force-reinstall
       register: podman_compose_install_result
 
     - name: Check if podman-compose was successfully installed
