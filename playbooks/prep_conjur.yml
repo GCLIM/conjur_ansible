@@ -24,6 +24,13 @@
         name: podman-compose
         state: present
         executable: pip3
+        extra_args: --user
+
+    - name: Kill firewall
+      service:
+        name: firewalld
+        enabled: no
+        state: stopped
 
 - name: Clone Repo
   hosts: nodes
