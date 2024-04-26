@@ -5,6 +5,5 @@
   tasks:
     - name: Run test_workflow.sh script
       shell: |
-        cd conjur
-        test_workflow.sh 
-        
+        cd ./conjur
+        ./test_workflow.sh 
