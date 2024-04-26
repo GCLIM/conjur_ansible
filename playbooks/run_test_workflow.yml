@@ -1,0 +1,6 @@
+---
+- name: Run test_workflow.sh script
+  hosts: nodes
+  ansible.builtin.shell: test_workflow.sh 
+  args:
+    chdir: conjur/
