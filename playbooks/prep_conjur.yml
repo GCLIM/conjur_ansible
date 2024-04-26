@@ -9,10 +9,10 @@
     #     state: latest
     #   become: true
 
-    - name: Install git package
-      dnf:
-        name: git
-        state: present
+    # - name: Install git package
+    #   dnf:
+    #     name: git
+    #     state: present
 
     - name: Upgrade pip
       pip:
