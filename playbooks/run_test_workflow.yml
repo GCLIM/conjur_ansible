@@ -1,6 +1,10 @@
 ---
-- name: Run test_workflow.sh script
+- name: Update packages and install dependencies
   hosts: nodes
-  ansible.builtin.shell: test_workflow.sh 
-  args:
-    chdir: conjur/
+
+  tasks:
+  - name: Run test_workflow.sh script
+    hosts: nodes
+    ansible.builtin.shell: test_workflow.sh 
+    args:
+      chdir: conjur/
