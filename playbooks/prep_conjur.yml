@@ -24,7 +24,8 @@
         name: podman-compose
         state: present
         executable: pip3
-
+        extra_args: --user
+        
 - name: Clone Repo
   hosts: nodes
   become: false
