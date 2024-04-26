@@ -2,6 +2,9 @@
 - name: Update packages and install dependencies
   hosts: nodes
   become: true
+  vars:
+    ansible_verbosity: 3  # Specify the verbosity level (0-4)
+
   tasks:
     - name: Update all packages
       yum:
@@ -26,7 +29,6 @@
         executable: pip3
         extra_args: --user
       register: podman_compose_install_result
-      verbosity: 3
 
     - name: Check if podman-compose was successfully installed
       debug:
