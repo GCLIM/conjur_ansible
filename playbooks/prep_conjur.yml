@@ -3,11 +3,11 @@
   hosts: nodes
   become: true
   tasks:
-    - name: Update system packages
-      dnf:
-        name: '*'
-        state: latest
-      become: true
+    # - name: Update system packages
+    #   dnf:
+    #     name: '*'
+    #     state: latest
+    #   become: true
 
     - name: Install git package
       dnf:
@@ -28,6 +28,10 @@
         executable: pip3
         user: yes
 
+- name: Clone Repo
+  hosts: nodes
+  become: false
+  tasks:
     - name: Clone Conjur Quickstart repository
       git:
         repo: https://github.com/gclim/conjur-quickstart.git
