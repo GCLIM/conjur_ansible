@@ -3,16 +3,15 @@
   hosts: nodes
   become: true
   tasks:
-    # - name: Update system packages
-    #   dnf:
-    #     name: '*'
-    #     state: latest
-    #   become: true
+    - name: Update all packages
+      yum:
+        name: '*'
+        state: latest
 
-    # - name: Install git package
-    #   dnf:
-    #     name: git
-    #     state: present
+    - name: Install git package
+      yum:
+        name: git
+        state: present
 
     - name: Upgrade pip
       pip:
