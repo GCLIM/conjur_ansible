@@ -1,6 +1,5 @@
 ---
 - name: Prepare Installation on a Clean Server
-  hosts: nodes
   become: true
   vars:
     ansible_verbosity: 3  # Specify the verbosity level (0-4)
