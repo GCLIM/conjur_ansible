@@ -1,44 +1,12 @@
 ---
-- name: Update packages and install dependencies
+- name: Prepare Conjur Server with Repo
   hosts: nodes
-  become: true
-  tasks:
-    - name: Update all packages
-      yum:
-        name: '*'
-        state: latest
-
-    - name: Install git package
-      yum:
-        name: git
-        state: present
-
-    - name: Upgrade pip
-      pip:
-        name: pip
-        state: latest
-        executable: pip3
-
-    - name: Install podman-compose
-      pip:
-        name: podman-compose
-        state: present
-        executable: pip3
-        extra_args: --user
-
-    - name: Kill firewall
-      service:
-        name: firewalld
-        enabled: no
-        state: stopped
-
-- name: Clone Repo
-  hosts: nodes
-  become: false
+  roles: 
+    - common
+  
   tasks:
     - name: Clone Conjur Quickstart repository
       git:
         repo: https://github.com/gclim/conjur-quickstart.git
         dest: ./conjur
         clone: yes
-        update: yes

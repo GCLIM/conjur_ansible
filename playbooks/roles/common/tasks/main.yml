@@ -1,0 +1,33 @@
+---
+- name: Update all packages
+  become: true
+  yum:
+    name: '*'
+    state: latest
+
+- name: Install git package
+  become: true
+  yum:
+    name: git
+    state: present
+
+- name: Upgrade pip
+  become: true
+  pip:
+    name: pip
+    state: latest
+    executable: pip3
+
+- name: Install podman-compose
+  pip:
+    name: podman-compose
+    state: present
+    executable: pip3
+    extra_args: --user --force-reinstall
+  
+- name: Kill firewall
+  become: true
+  service:
+    name: firewalld
+    enabled: no
+    state: stopped
