@@ -3,15 +3,9 @@
   hosts: nodes
   roles: 
     - common
-
-  vars:
-    conjur_repo: https://github.com/gclim/conjur-quickstart.git
-    ansible_verbosity: 3  # Specify the verbosity level (0-4)
-
+  
   tasks:
-    - name: Clone Conjur Quickstart repository
-      git:
-        repo: "{{ conjur_repo }}"
+    - name: Copy files
+      copy:
+        src: ./conjur
         dest: ./conjur
-        clone: yes
-
