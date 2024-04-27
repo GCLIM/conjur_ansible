@@ -5,7 +5,8 @@
     - common
   
   tasks:
-    - name: Copy files
-      copy:
-        src: ./conjur
+    - name: Clone Conjur Quickstart repository
+      git:
+        repo: https://github.com/gclim/conjur-quickstart.git
         dest: ./conjur
+        clone: yes
