@@ -31,4 +31,3 @@
     name: firewalld
     enabled: no
     state: stopped
-
