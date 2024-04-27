@@ -1,8 +1,6 @@
 ---
 - name: Prepare Installation on a Clean Server
   become: true
-  vars:
-    ansible_verbosity: 3  # Specify the verbosity level (0-4)
 
   tasks:
     - name: Update all packages
