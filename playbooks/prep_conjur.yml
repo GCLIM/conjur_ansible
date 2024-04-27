@@ -1,6 +1,8 @@
 ---
 - name: Prepare Conjur Server with Repo
   hosts: nodes
+  roles:
+    - role: "/roles/common"
 
   vars:
     conur_repo: https://github.com/gclim/conjur-quickstart.git
@@ -13,5 +15,3 @@
         dest: ./conjur
         clone: yes
 
-roles:
-  - common
