@@ -5,7 +5,7 @@
     - role: "/roles/common"
 
   vars:
-    conur_repo: https://github.com/gclim/conjur-quickstart.git
+    conjur_repo: https://github.com/gclim/conjur-quickstart.git
     ansible_verbosity: 3  # Specify the verbosity level (0-4)
 
   tasks:
