@@ -1,8 +1,8 @@
 ---
 - name: Prepare Conjur Server with Repo
   hosts: nodes
-  roles:
-    - role: "/roles/common"
+  roles: 
+    - common
 
   vars:
     conjur_repo: https://github.com/gclim/conjur-quickstart.git
