@@ -11,7 +11,7 @@
   tasks:
     - name: Clone Conjur Quickstart repository
       git:
-        repo: {{ conjur_repo }}
+        repo: "{{ conjur_repo }}"
         dest: ./conjur
         clone: yes
 
