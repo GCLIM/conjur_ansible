@@ -2,39 +2,32 @@
 - name: Prepare Installation on a Clean Server
   become: true
 
-  tasks:
-    - name: Update all packages
-      yum:
-        name: '*'
-        state: latest
+- name: Update all packages
+  yum:
+    name: '*'
+    state: latest
 
-    - name: Install git package
-      yum:
-        name: git
-        state: present
+- name: Install git package
+  yum:
+    name: git
+    state: present
 
-    - name: Upgrade pip
-      pip:
-        name: pip
-        state: latest
-        executable: pip3
+- name: Upgrade pip
+  pip:
+    name: pip
+    state: latest
+    executable: pip3
 
-    - name: Install podman-compose
-      pip:
-        name: podman-compose
-        state: present
-        executable: pip3
-        extra_args: --user --force-reinstall
-      register: podman_compose_install_result
-
-    - name: Check if podman-compose was successfully installed
-      debug:
-        msg: "podman-compose is successfully installed"
-      when: not podman_compose_install_result.failed
-
-    - name: Kill firewall
-      service:
-        name: firewalld
-        enabled: no
+- name: Install podman-compose
+  pip:
+    name: podman-compose
+    state: present
+    executable: pip3
+    extra_args: --user --force-reinstall
+  
+- name: Kill firewall
+  service:
+    name: firewalld
+    enabled: no
         state: stopped
 
