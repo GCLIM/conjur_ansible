@@ -1,70 +1,14 @@
 ---
-- name: Update packages and install dependencies
+- name: Prepare Conjur Server with Repo
   hosts: nodes
-  become: true
+
   vars:
+    conur_repo: https://github.com/gclim/conjur-quickstart.git
     ansible_verbosity: 3  # Specify the verbosity level (0-4)
-    podman_compose_path: /usr/local/bin/podman-compose
-    podman_compose_install_method: "git"
-    podman_compose_version_git: "devel"
-    podman_compose_version_pip: ""
 
-  tasks:
-    - name: Update all packages
-      yum:
-        name: '*'
-        state: latest
-
-    - name: Install git package
-      yum:
-        name: git
-        state: present
-
-    - name: Upgrade pip
-      pip:
-        name: pip
-        state: latest
-        executable: pip3
-
-    # - name: Install podman-compose
-    #   pip:
-    #     name: podman-compose
-    #     state: present
-    #     executable: pip3
-    #     extra_args: --user --force-reinstall
-    #   register: podman_compose_install_result
-
-    # - name: Check if podman-compose was successfully installed
-    #   debug:
-    #     msg: "podman-compose is successfully installed"
-    #   when: not podman_compose_install_result.failed
-
-    - name: Install podman-compose from git
-      get_url:
-        url: https://raw.githubusercontent.com/containers/podman-compose/{{ podman_compose_version_git }}/podman_compose.py
-        dest: "{{ podman_compose_path }}"
-        mode: "755"
-      when: podman_compose_install_method == 'git'
-
-    - name: Install podman-compose from pip
-      pip:
-        name: podman-compose
-        version: "{{ podman_compose_version_pip | default(omit) }}"
-      when: podman_compose_install_method == 'pip'
-
-    - name: Kill firewall
-      service:
-        name: firewalld
-        enabled: no
-        state: stopped
-
-- name: Clone Repo
-  hosts: nodes
-  become: false
   tasks:
     - name: Clone Conjur Quickstart repository
       git:
-        repo: https://github.com/gclim/conjur-quickstart.git
+        repo: {{ conjur_repo }}
         dest: ./conjur
         clone: yes
-        update: yes
